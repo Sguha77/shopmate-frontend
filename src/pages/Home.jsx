@@ -22,11 +22,12 @@ const Home = () => {
       }
     };
 
-   useEffect(() => {
+    useEffect(() => {
   fetchProducts()
     .then(data => setProducts(data))
     .catch(error => console.error(error));
 }, []);
+  }, []);
 
   // Filter logic
   const filteredProducts = allProducts.filter((product) =>
