@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductList from "../components/ProductList";
 import { MdLocationOn } from "react-icons/md";
 import axios from "axios";
+import { fetchProducts } from '../utils/api';
 
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -21,8 +22,11 @@ const Home = () => {
       }
     };
 
-    fetchProducts();
-  }, []);
+   useEffect(() => {
+  fetchProducts()
+    .then(data => setProducts(data))
+    .catch(error => console.error(error));
+}, []);
 
   // Filter logic
   const filteredProducts = allProducts.filter((product) =>
